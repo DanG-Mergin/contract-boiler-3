@@ -1,0 +1,151 @@
+<!-- [afterChange]= "tableUpdated()" -->
+<div class="row" >
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-block">
+					<div class="form-group">
+						<label for="inputClass">Input Class</label>
+						<input type="text" class="form-control" id="inputClass" name="inputClass"
+						[(ngModel)]="inputBuilderParams.class">
+					</div>
+
+					<h3>Paste table in correct format here:</h3>
+					<hot-table
+					[colHeaders]="true"
+					[rowHeaders]="true"
+					[data]="dataset"
+					>
+						<hot-column data="object" title="Object"></hot-column>
+						<hot-column data="displayName" title="Display Name"></hot-column>
+						<hot-column data="fieldName" title="Field Name"></hot-column>
+						<hot-column data="type" title="Field Type"></hot-column>
+						<hot-column data="sample" title="Sample Data"></hot-column>
+						<hot-column data="required" title="Required"></hot-column>
+						<hot-column data="dbField" title="Field Type"></hot-column>
+						<hot-column data="minLength" title="Min Length"></hot-column>
+						<hot-column data="maxLength" title="Max Length"></hot-column>
+						
+						
+						<hot-column data="technicalUser" title="Technical User"></hot-column>
+						<hot-column data="clientAdmin" title="Admin User"></hot-column>
+						<hot-column data="operator" title="Operator"></hot-column>
+					</hot-table>
+				</div>
+				<button (click)="tableUpdated()">Generate</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h3>Interface Output</h3>
+				<div class="card-block">
+					<textarea [ngModel]="interfaceOutput" rows="4" cols="100"></textarea>
+				</div>
+				<h3>Interface Constructor Output</h3>
+				<div class="card-block">
+					<textarea [ngModel]="constructorOutput" rows="4" cols="100"></textarea>
+				</div>
+				<h3>Input Builder Output</h3>
+				<div class="card-block">
+					<textarea [ngModel]="inputBuilderOutput" rows="4" cols="100"></textarea>
+				</div>
+				<h3>Fake Json Output</h3>
+				<div class="card-block">
+					<textarea rows="4" cols="100">{{ fakeJsonData | json }}</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				
+				<h3>Import All Tables Here</h3>
+				<div class="card-block">
+				<hot-table
+					[colHeaders]="true"
+					[rowHeaders]="true"
+					[data]="mockTableData"
+					>					
+						<hot-column data="name" title="Field Name"></hot-column>
+						<hot-column data="type" title="Field Type"></hot-column>
+						<hot-column data="sample" title="Sample Data"></hot-column>
+					</hot-table>
+				</div>
+				<button (click)="createSampleData()">Create Mock Data</button>
+
+				<div class="card-block">
+					<h3>sample data json output</h3>
+					<div class="form-group">
+						<!-- [(ngModel)]="sampleDataOut" -->
+						<textarea id="sampleDataOut" name="sampleDataOut" 
+						 rows="4" cols="200">{{ sampleDataOut | json }}</textarea>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="row" >
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-block">
+					<h3>Input Raw SQL here</h3>
+					<div class="form-group">
+						<label for="sqlData">Enter Raw SQL</label>
+						<textarea id="sqlData" name="sqlData" 
+						[(ngModel)]="rawSqlData" rows="4" cols="100"></textarea>
+					</div>
+					<button (click)="sqlToFieldNames()">Parse Sql to Fields</button>
+				</div>
+				<h3>Sql To Fields Output</h3>
+				<div class="card-block">
+					<!-- <textarea [ngModel]="sqlToFieldsOut" rows="4" cols="100"></textarea> -->
+
+				<hot-table
+					[colHeaders]="true"
+					[rowHeaders]="true"
+					[data]="sqlToFieldsOut"
+					>
+						<hot-column data="object" title="Object"></hot-column>
+						<hot-column data="fieldName" title="Field Name"></hot-column>
+						<hot-column data="sqlType" title="DB Field Type"></hot-column>
+						<hot-column data="fieldType" title="Field Type"></hot-column>
+						<hot-column data="minLength" title="Min Length"></hot-column>
+						<hot-column data="maxLength" title="Max Length"></hot-column>
+						<hot-column data="required" title="Required"></hot-column>
+					</hot-table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- export interface Entity {
+	name: string;
+	type: string;
+	make: string;
+	model: string;
+	mfcSerial: string;
+	picSixSerial: string;
+	lon: number;
+	lat: number;
+	sbc?: Sbc;
+	sdr?: Sdr;
+	rfChains?: Array<RfChain>;
+}
+ -->
